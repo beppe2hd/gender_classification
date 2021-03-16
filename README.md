@@ -21,10 +21,6 @@ The Project include 3 files:
 - confusion_matrix.py: devoted to generate a confusion matrix by predicting the image in the validation folder
 - predict.py: devoted to process a single image (given as argument)
 
-The trained models are stored in the folders:
-- trained_model_net_1
-- trained_model_net_2
-
 Each of these folder includes a file named "trainingDetails.txt" reporting the training plus 
 information obtained by further analysis exploiting the trained model. 
 
@@ -47,6 +43,10 @@ classification on 6 classes, the current one with include only 2 classes. Moreov
 whereas the current gender classification exploits a dataset of centered and well cropped faces.
 Moreover, in order to investigate the possibility of increasing the accuracy in classification by means of the use of a
 more complex network, a second network has been trained.
+Both the trained models are stored in the folders:
+- trained_model_net_1
+- trained_model_net_2
+at the link: https://drive.google.com/drive/folders/1jxz3_L-NoiWjLiOJ71l0esX1z_TXDA00?usp=sharing
 
 ### Net1
 The first developed network (details can be found in the code) led to a classification the following performance:
