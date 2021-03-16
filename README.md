@@ -1,4 +1,4 @@
-# gender_classification
+# Gender Classification
 
 The project deal with the training and a preliminary test of a Convolutional Neural Network devoted to
 the classification of the gender soft biometrics.
@@ -16,8 +16,7 @@ The network is inspired to the one proposed in https://www.researchgate.net/prof
 
 The Project include 3 files:
 
-- train.py: devoted to the training of the network (Network A)
-- train.py: devoted to the training of a slightly  modified version of the network (Network B)
+- train.py: devoted to the training of the networks
 - confusion_matrix.py: devoted to generate a confusion matrix by predicting the image in the validation folder
 - predict.py: devoted to process a single image (given as argument)
 
