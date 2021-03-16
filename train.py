@@ -10,6 +10,8 @@ from tensorflow.keras import layers, models
 import pathlib # lib for analysis on the dataset folder
 from pathlib import Path
 
+import matplotlib.pyplot as plt # for accuracy training plotting
+
 import numpy as np
 
 # Training data
@@ -74,13 +76,28 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-epochs=5
+epochs=1
 
 history = model.fit(
   train_set,
   validation_data=val_set,
   epochs=epochs
 )
+
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+print("Accuracy")
+print(acc)
+print("Val accuracy")
+print(val_acc)
+print("Loss")
+print(loss)
+print("Val Loss")
+print(val_loss)
 
 model.summary()
 model.save("trained_model")

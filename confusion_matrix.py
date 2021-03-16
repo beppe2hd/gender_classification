@@ -1,5 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # Disable all the TensorFlow Extra Debug Notification.
+import time
 
 # set of imports for tensorflow and keras
 import tensorflow as tf
@@ -31,7 +32,7 @@ data_dir = pathlib.Path(data_dir)
 image_count = len(list(data_dir.glob('*.jpg')))
 print(image_count)
 
-model = keras.models.load_model('trained_model')  # The model is loaded
+model = keras.models.load_model('trained_model_net_2')  # The model is loaded
 class_names = ['female', 'male']  # classes name definition (coherently with the class retrieved in training)
 
 # Defining parameters for the image processing
@@ -48,9 +49,10 @@ for path in Path(data_dir).iterdir():
         count = 0
         for subpath in Path(path).glob('*.jpg'):
             count +=  1
-            if count == 80:
-                break
-            print(subpath)
+            #if count == 80:
+            #    break
+            #print(count)
+            t1=time.clock()
             image = keras.preprocessing.image.load_img(
                 subpath, target_size = (img_height, img_width)
             )
@@ -58,6 +60,8 @@ for path in Path(data_dir).iterdir():
             img_for_processing = tf.expand_dims(img_for_processing, 0)
             predictions = model.predict(img_for_processing)
             score = tf.nn.softmax(predictions[0])
+            pred_time=time.clock()-t1
+            print(pred_time)
             predicted_category = class_names[np.argmax(score)]
             if category_under_test == 'male':
                 if category_under_test == predicted_category:
