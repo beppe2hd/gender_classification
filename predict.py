@@ -25,14 +25,23 @@ else:
     print("Wrong number of arguments")
 
 # the file is loaded and scaled/reshaped if necessary
-image = keras.preprocessing.image.load_img(
-    file_path, target_size=(img_height, img_width)
-)
+try:
+    image = keras.preprocessing.image.load_img(
+      file_path, target_size=(img_height, img_width)
+    )
+except FileNotFoundError:
+    print("The file is not availabe.")
+    sys.exit(1)
 
 img_for_processing = keras.preprocessing.image.img_to_array(image) # the file is loaded and reshaped if necessary
 img_for_processing = tf.expand_dims(img_for_processing, 0) # Image is prepared for the analysis
 
-model = keras.models.load_model('trained_model') # the model is loaded
+try:
+    model = keras.models.load_model('trained_model_net_13') # the model is loaded
+except OSError:
+    print("The model is not availabe.")
+    sys.exit(1)
+
 class_names = ['female', 'male'] # classes name definition (coherently with the class retrieved in training)
 
 # The prediction and its score are computed
